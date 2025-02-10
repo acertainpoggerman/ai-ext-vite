@@ -50,9 +50,9 @@ export class ChatPanel {
       // If a webview panel does not already exist create and show a new one
       const panel = window.createWebviewPanel(
         // Panel view type
-        "showHelloWorld",
+        "showChat",
         // Panel title
-        "Hello World",
+        "AI Ext Chat",
         // The editor column the panel should be displayed in
         ViewColumn.One,
         // Extra panel configurations
