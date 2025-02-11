@@ -138,7 +138,7 @@ export class ChatPanel {
         const text = message.text;
 
         switch (command) {
-          case "hello":
+          case "chat":
             // Code that should run in response to the hello message command
             window.showInformationMessage(text);
             return;

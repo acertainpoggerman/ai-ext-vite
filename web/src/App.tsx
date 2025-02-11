@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { vscode } from './utilities/vscode';
 
 function App() {
   const [model] = useState<string>("deepseek-coder-v2:16b");
   const [response] = useState<string>("");
   
   const sendMessage = () => {
-    console.log("Message sent.");
+    vscode.postMessage({
+      command: "chat",
+      text: "Asked a Question!",
+    })
   }
   
   return (
