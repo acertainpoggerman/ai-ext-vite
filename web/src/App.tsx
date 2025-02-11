@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 function App() {
-  const [model, setModel] = useState<string>("deepseek-coder-v2:16b");
-  const [response, setResponse] = useState<string>("");
+  const [model] = useState<string>("deepseek-coder-v2:16b");
+  const [response] = useState<string>("");
   
   const sendMessage = () => {
     console.log("Message sent.");
