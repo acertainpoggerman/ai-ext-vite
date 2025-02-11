@@ -1,34 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [model, setModel] = useState<string>("deepseek-coder-v2:16b");
+  const [response, setResponse] = useState<string>("");
+  
+  const sendMessage = () => {
+    console.log("Message sent.");
+  }
+  
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex flex-col p-2 gap-8">
+      <div className="flex flex-col gap-2">
+        <textarea placeholder="Enter Request Here" className="border border-slate-300/15 rounded-lg bg-white/5 p-2 !outline-none focus:!border-white transition-colors duration-200 ease-out" />
+        <div className="flex justify-between items-stretch">
+          <span className="p-2 px-4 bg-gray-600/15 rounded-md text-xs font-semibold align-baseline">{model}</span>
+          <button onClick={() => sendMessage()} className="p-2 px-10 bg-blue-500 hover:bg-blue-400 text-white font-semibold rounded-md w-fit self-end">Ask</button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <div className="">{response}</div>
+    </div>
+  );
 }
 
-export default App
+export default App;
