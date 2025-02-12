@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { vscode } from "./utilities/vscode";
+import Markdown from "react-markdown";
 
 function App() {
   const [model] = useState<string>("deepseek-coder-v2:16b");
@@ -45,8 +46,21 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="">
-        <pre className="">{response}</pre>
+      <div className="max-w-4xl ">
+        <Markdown
+          className=" 
+            [&_code]:font-mono
+            [&_pre_code]:!bg-transparent [&_pre_code]:!text-white/50 [&_pre_code]:!font-light
+            [&_pre]:my-4 [&_pre]:rounded-lg [&_pre]:border [&_pre]:border-white/5 [&_pre]:p-4
+            
+            [&_ol]:my-4 [&_ol]:list-decimal [&_ol]:ml-8 [&_ol]:flex [&_ol]:flex-col [&_ol]:gap-2 
+            [&_ul]:my-4 [&_ul]:ml-8 [&_ul]:list-disc [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2
+            
+            [&_h3]:font-bold [&_h3]:text-md
+          "
+        >
+        {response}
+        </Markdown>
       </div>
     </div>
   );
