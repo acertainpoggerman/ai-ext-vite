@@ -1,15 +1,29 @@
-import { useState } from "react";
-// import { vscode } from "./utilities/vscode";
+import { useEffect, useState } from "react";
+import { vscode } from "./utilities/vscode";
 
 function App() {
   const [model] = useState<string>("deepseek-coder-v2:16b");
   const [prompt, setPrompt] = useState<string>("");
-  // const [response, setResponse] = useState<string>("");
+  const [response, setResponse] = useState<string>("");
 
   const sendPrompt = async () => {
-
+    vscode.postMessage({
+      command: "chat",
+      text: prompt,
+      model: model,
+    })
   };
-
+  
+  useEffect(() => {
+    window.addEventListener("message", event => {
+      const { command, text } = event.data;
+      switch (command) {
+        case "chatResponse":
+          setResponse(text);
+      }
+    })
+  }, []);
+  
   return (
     <div className="flex flex-col p-2 gap-8">
       <div className="flex flex-col gap-2">
@@ -31,7 +45,9 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="">{prompt}</div>
+      <div className="">
+        <pre className="">{response}</pre>
+      </div>
     </div>
   );
 }
