@@ -53,7 +53,7 @@ export class ChatPanel {
         // Panel view type
         "showChat",
         // Panel title
-        "AI Ext Chat",
+        "CHAT",
         // The editor column the panel should be displayed in
         ViewColumn.One,
         // Extra panel configurations
