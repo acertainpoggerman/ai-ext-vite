@@ -1,5 +1,6 @@
-import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn } from "vscode";
+import { Disposable, Webview, WebviewPanel, window, Uri, ViewColumn, ExtensionContext } from "vscode";
 import { getUri, getNonce } from "../utilities";
+import ollama from "ollama";
 
 /**
  * This class manages the state and behavior of HelloWorld webview panels.
@@ -135,15 +136,38 @@ export class ChatPanel {
     webview.onDidReceiveMessage(
       async (message: any) => {
         const command = message.command;
-        const text = message.text;
 
         switch (command) {
           case "hello":
+            const text = message.text;
             // Code that should run in response to the hello message command
             window.showInformationMessage(text);
             return;
           // Add more switch case statements here as more webview message commands
           // are created within the webview context (i.e. inside media/main.js)
+          case "chat":
+            const model = message.model;
+            const prompt = message.text;
+            let responseText = "";
+            
+            try {
+              const responseStream = await ollama.chat({
+                model,
+                messages: [{ role: "user", content: prompt }],
+                stream: true,
+              });
+              
+              for await (const part of responseStream) {
+                responseText += part.message.content;
+                webview.postMessage({
+                  command: "chatResponse",
+                  text: responseText
+                });
+              }
+              
+            } catch (e) {
+              console.log("error");
+            }
         }
       },
       undefined,
