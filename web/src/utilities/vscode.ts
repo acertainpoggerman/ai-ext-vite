@@ -59,7 +59,7 @@ class VSCodeAPIWrapper {
    * @remarks When running webview source code inside a web browser, setState will set the given
    * state using local storage (https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
    *
-   * @param newState New persisted state. This must be a JSON serializable object. Can be retrieved
+   * @param newState New persisted state. Thi s must be a JSON serializable object. Can be retrieved
    * using {@link getState}.
    *
    * @return The new state.

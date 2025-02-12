@@ -133,12 +133,12 @@ export class ChatPanel {
    */
   private _setWebviewMessageListener(webview: Webview) {
     webview.onDidReceiveMessage(
-      (message: any) => {
+      async (message: any) => {
         const command = message.command;
         const text = message.text;
 
         switch (command) {
-          case "chat":
+          case "hello":
             // Code that should run in response to the hello message command
             window.showInformationMessage(text);
             return;
