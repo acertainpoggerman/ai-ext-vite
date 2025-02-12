@@ -3,17 +3,19 @@ import { useState } from "react";
 
 function App() {
   const [model] = useState<string>("deepseek-coder-v2:16b");
-  const [response, setResponse] = useState<string>("");
+  const [prompt, setPrompt] = useState<string>("");
+  // const [response, setResponse] = useState<string>("");
 
-  const sendPrompt = () => {
-    const responseText = "This is text";
-    setResponse(responseText);
+  const sendPrompt = async () => {
+
   };
 
   return (
     <div className="flex flex-col p-2 gap-8">
       <div className="flex flex-col gap-2">
         <textarea
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
           placeholder="Enter Request Here"
           className="border border-slate-300/15 rounded-lg bg-white/5 p-2 !outline-none focus:!border-white transition-colors duration-200 ease-out"
         />
@@ -29,7 +31,7 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="">{response}</div>
+      <div className="">{prompt}</div>
     </div>
   );
 }
